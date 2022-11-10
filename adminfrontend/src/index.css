@@ -1,0 +1,10 @@
+/* Admin Login page css */
+#login{
+    display: flex;
+    height: 500px;
+    margin-top: 70px;
+}
+#login .row{
+    height: 100%;
+    align-items: center;
+}

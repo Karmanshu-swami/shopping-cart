@@ -1,0 +1,32 @@
+/* Header and navbar Css */
+#header{
+    display: flex;
+    align-items: baseline;
+}
+
+/* Registration page css */
+#reg{
+    display: flex;
+    margin-top: 30px;
+    height: 500px;
+}
+#reg .row{
+    height: 100%;
+    align-items: center;
+}
+
+/* Login page css */
+#login{
+    display: flex;
+    height: 500px;
+    margin-top: 30px;
+}
+#login .row{
+    height: 100%;
+    align-items: center;
+}
+
+/* Hero sectio  */
+#hero img{
+    height: 550px;
+}
