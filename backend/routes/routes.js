@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const Reg = require('../models/registration')
-const admintable = require("../models/adminLogin")
+const Reg = require('../models/registration');
+const admintable = require("../models/adminLogin");
+const Products = require('../models/Products');
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "Home page" })
@@ -67,6 +68,10 @@ router.post("/admin/login", async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: message.error })
     }
+});
+
+router.post('/admin/addproduct', (req, res) => {
+    console.log(req.body);
 });
 
 

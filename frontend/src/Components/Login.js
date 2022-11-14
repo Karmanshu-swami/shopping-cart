@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { LoginContext } from '../LoginContex'
 
 function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState('')
+    const { setuserLoginName, setuserLoginStatus } = useContext(LoginContext)
     const navigate = useNavigate()
     function handleSubmit(e) {
         e.preventDefault(e)
@@ -23,7 +25,10 @@ function Login() {
                 if (data.username) {
                     navigate('/')
                     setMessage("Loggedin Properly!")
-                    // localStorage.setItem('userLoginName', data.username)
+                    localStorage.setItem('userLoginName', data.username)
+                    setuserLoginName(localStorage.getItem('userLoginName'))
+                    localStorage.setItem('userLoginStatus', '1')
+                    setuserLoginStatus(localStorage.getItem('userLoginStatus'))
                 } else {
                     setMessage('Wrong Credentials!')
                 }

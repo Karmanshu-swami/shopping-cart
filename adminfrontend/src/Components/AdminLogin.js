@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AdminContext } from '../AdminContext'
 
 function AdminLogin() {
     const [adminName, setAdminName] = useState('')
     const [adminPassword, setAdminPassword] = useState('')
     const [message, setMessage] = useState('')
     const navigate = useNavigate()
+
+    const { setadminLoginName, setadminLoginStatus } = useContext(AdminContext)
     function handleSubmit(e) {
         e.preventDefault(e)
         // console.log(adminName, adminPassword);
@@ -22,7 +25,9 @@ function AdminLogin() {
                 // console.log(data);
                 if (data.adminName) {
                     localStorage.setItem('adminLoginName', data.adminName)
-                    localStorage.setItem('adminLoginStatus', 1)
+                    setadminLoginName(localStorage.getItem('adminLoginName'))
+                    localStorage.setItem('adminLoginStatus', '1')
+                    setadminLoginStatus(localStorage.getItem('adminLoginStatus'))
                     navigate('/admin/dashboard')
                 } else {
                     setMessage('Wrong Credentials!')

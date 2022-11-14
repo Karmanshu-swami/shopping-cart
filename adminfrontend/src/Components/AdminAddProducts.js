@@ -1,7 +1,7 @@
 import AdminFooter from './AdminFooter';
 import AdminHeader from './AdminHeader'
 import AdminLeft from './AdminLeft';
-function AdminDashboard() {
+function AdminAddProducts() {
     return (
         <>
             <div className='container-fluid'>
@@ -9,7 +9,7 @@ function AdminDashboard() {
                 <div className='row mt-3'>
                     <AdminLeft />
                     <div className='col-md-8'>
-                        <h3>Admin Dashboard Mid Section</h3>
+                        <h3>Add products form</h3>
                     </div>
                 </div>
                 <AdminFooter />
@@ -18,4 +18,4 @@ function AdminDashboard() {
     );
 }
 
-export default AdminDashboard;
+export default AdminAddProducts;
