@@ -26,7 +26,12 @@
     align-items: center;
 }
 
-/* Hero sectio  */
+/* Hero section  */
 #hero img{
     height: 550px;
+}
+
+/* product card css */
+#product_card{
+    display: inline-flex;
 }

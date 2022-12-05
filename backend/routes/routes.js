@@ -46,13 +46,33 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.get('/getallproducts', async (req, res) => {
+    try {
+        const productdata = await Products.find({ productStatus: "Published" })
+        res.status(200).json(productdata)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // ----------------ADMIN ROUTES---------------
 router.get('/admin/', (req, res) => {
     res.status(200).json({ message: "Admin Home page" })
 });
 
 router.post("/admin/login", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     try {
         const { adminName, adminPassword } = req.body;
         const verifyadmin = await admintable.findOne({ adminName: adminName });
@@ -70,9 +90,57 @@ router.post("/admin/login", async (req, res) => {
     }
 });
 
-router.post('/admin/addproduct', (req, res) => {
-    console.log(req.body);
+router.post('/admin/addproducts', async (req, res) => {
+    try {
+        // console.log(req.body);
+        const { productName, productDesc, productPrice } = req.body
+        const productdata = new Products({
+            productName: productName,
+            productDesc: productDesc,
+            productPrice: productPrice,
+            productStatus: "Unpublished"
+        })
+        await productdata.save()
+        res.status(201).json(productdata)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+
 });
 
+router.get('/admin/getallproducts', async (req, res) => {
+    try {
+        const productdata = await Products.find()
+        res.status(200).json(productdata)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+});
+
+router.get('/admin/getsingleproduct/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const productdata = await Products.findById(id)
+        res.status(200).json(productdata)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+});
+
+router.put('/admin/updateproduct/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { productName, productDesc, productPrice, productStatus } = req.body;
+        const updatedproduct = await Products.findByIdAndUpdate(id, {
+            productName: productName,
+            productDesc: productDesc,
+            productPrice: productPrice,
+            productStatus: productStatus
+        });
+        res.status(200).json({ message: "Successfully updated the product" })
+    } catch (error) {
+        res.status(400).json({ message: "Something went wrong" })
+    }
+})
 
 module.exports = router

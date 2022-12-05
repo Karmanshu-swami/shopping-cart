@@ -1,2 +1,11 @@
 ###
 GET http://localhost:5000/api/
+
+###
+GET http://localhost:5000/api/admin/getallproducts
+
+###
+POST http://localhost:5000/api/admin/updateproduct/6372e7818c8a6c43251dc1bb
+
+###
+GET http://localhost:5000/api/getallproducts

@@ -5,6 +5,7 @@ import AdminLogin from './Components/AdminLogin';
 import { AdminContext } from './AdminContext'
 import AdminProducts from './Components/AdminProducts';
 import AdminAddProducts from './Components/AdminAddProducts';
+import AdminProductDetails from './Components/AdminProductDetails';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route element={<AdminDashboard />} path="/admin/dashboard"></Route>
             <Route element={<AdminProducts />} path="/admin/products"></Route>
             <Route element={<AdminAddProducts />} path="/admin/addproducts"></Route>
+            <Route element={<AdminProductDetails />} path="/admin/productdetails/:id"></Route>
           </Routes>
         </AdminContext.Provider>
       </Router>

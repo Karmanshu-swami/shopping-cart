@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import Homepage from './Components/Homepage';
 import Login from './Components/Login';
 import Registration from './Components/Registration';
+import ViewAllProducts from './Components/ViewAllProducts';
 import { LoginContext } from './LoginContex'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route element={<Homepage />} path="/"></Route>
           <Route element={<Login />} path="/login"></Route>
           <Route element={<Registration />} path="/reg"></Route>
+          <Route element={<ViewAllProducts />} path="/products"></Route>
         </Routes>
 
       </LoginContext.Provider>

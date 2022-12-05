@@ -8,7 +8,7 @@ function AdminDashboard() {
                 <AdminHeader />
                 <div className='row mt-3'>
                     <AdminLeft />
-                    <div className='col-md-8'>
+                    <div className='col-md-9'>
                         <h3>Admin Dashboard Mid Section</h3>
                     </div>
                 </div>

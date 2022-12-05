@@ -5,9 +5,9 @@ function Header() {
     const { userLoginName, setUserLoginName, userLoginStatus, setuserLoginStatus } = useContext(LoginContext)
     const navigate = useNavigate()
     function handleLogout() {
+        navigate('/')
         setuserLoginStatus(localStorage.removeItem('userLoginStatus'))
         setUserLoginName(localStorage.removeItem('userLoginName'))
-        navigate('/')
     }
     return (
         <section id='header'>
@@ -35,9 +35,14 @@ function Header() {
                                                 </li>
                                             </>
                                             :
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/reg">Register</Link>
-                                            </li>
+                                            <>
+                                                <li className="nav-item">
+                                                    <Link className="nav-link" to="/reg">Register</Link>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link className="nav-link" to="/products">Products</Link>
+                                                </li>
+                                            </>
                                         }
                                     </ul>
                                     <form className="d-flex">
