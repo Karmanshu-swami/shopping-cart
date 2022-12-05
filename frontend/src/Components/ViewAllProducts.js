@@ -20,7 +20,7 @@ function ViewAllProducts() {
                         <h2>View all Products</h2></div>
                 </div>
                 <div className='row'>
-                    <div className='col-md-12 p-5' id='product_card'>
+                    <div className='col-md-12' id='product_card'>
                         {products.map((results) => (
                             <Products product={results} key={results._id} />
                         ))}
