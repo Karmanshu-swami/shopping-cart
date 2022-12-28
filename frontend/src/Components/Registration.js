@@ -10,7 +10,7 @@ function Registration() {
 
     function hanleSubmit(e) {
         e.preventDefault()
-        console.log(username, password)
+        // console.log(username, password)
         const regdata = { username, password };
         fetch("/reg", {
             method: "POST",

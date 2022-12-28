@@ -10,7 +10,7 @@ function Login() {
     const navigate = useNavigate()
     function handleSubmit(e) {
         e.preventDefault(e)
-        console.log(username, password);
+        // console.log(username, password);
         const bodydata = { username, password };
         fetch('/login', {
             method: "POST",
@@ -21,7 +21,7 @@ function Login() {
                 return res.json()
             })
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 if (data.username) {
                     navigate('/')
                     setMessage("Loggedin Properly!")

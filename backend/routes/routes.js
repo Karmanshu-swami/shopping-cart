@@ -2,6 +2,8 @@ const router = require('express').Router();
 const Reg = require('../models/registration');
 const admintable = require("../models/adminLogin");
 const Products = require('../models/Products');
+const Orders = require('../models/Order')
+const MyOrders = require('../models/MyOrders')
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "Home page" })
@@ -55,9 +57,51 @@ router.get('/getallproducts', async (req, res) => {
     }
 });
 
+// Router to add the cart details in the database
+router.post("/addcartproducts", async (req, res) => {
+    // console.log(req.body);
+    const ids = req.body.ids;
+    const cartdata = await Products.find({ _id: { $in: ids } })
+    res.status(200).json(cartdata)
+});
 
+// Router to make the checkout
+router.post('/checkout/:username', async (req, res) => {
+    const username = req.params.username;
+    let cartids = req.body.items
+    for (const key in cartids) {
+        // console.log(key, cartids[key]);
+        const orderdata = new Orders({
+            userName: username,
+            productId: key,
+            productQunty: cartids[key],
+            productStatus: "New"
+        });
+        await orderdata.save()
+    }
 
+    const orderrec = await Orders.find({ productStatus: "New" })
+    orderrec.forEach(async (result) => {
+        const orderid = result._id
+        const products = await Products.findById(result.productId)
+        // console.log(result);
+        const myorderdata = new MyOrders({
+            userName: username,
+            productPrice: products.productPrice,
+            productDesc: products.productDesc,
+            productQunty: result.productQunty
+        });
+        await myorderdata.save()
+        await Orders.findByIdAndUpdate(orderid, { productStatus: "Old" })
+    })
+});
 
+// Route to check the orders i did in past
+router.get('/myorders/:username', async (req, res) => {
+    const username = req.params.username
+    const myorder = await MyOrders.find({ userName: username })
+    res.status(200).json(myorder)
+})
 
 
 
